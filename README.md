@@ -1,4 +1,4 @@
-<img src="images/tiles.svg" alt="Description" style="width: 100%; max-width: 600px; height: auto;">
+
 
 # Hand Gesture Recognition System
 
