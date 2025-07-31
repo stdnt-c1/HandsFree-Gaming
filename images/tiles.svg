@@ -37,133 +37,232 @@
       </stop>
     </linearGradient>
 
-    <!-- Glassmorphism background gradients -->
-    <linearGradient id="glassGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:rgba(255,255,255,0.25);stop-opacity:1"/>
+    <!-- Subtle glassmorphism gradients -->
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.2);stop-opacity:1"/>
       <stop offset="50%" style="stop-color:rgba(255,255,255,0.1);stop-opacity:1"/>
       <stop offset="100%" style="stop-color:rgba(255,255,255,0.05);stop-opacity:1"/>
     </linearGradient>
 
-    <radialGradient id="glassRadial" cx="30%" cy="30%" r="70%">
-      <stop offset="0%" style="stop-color:rgba(255,255,255,0.3);stop-opacity:1"/>
-      <stop offset="100%" style="stop-color:rgba(255,255,255,0.08);stop-opacity:1"/>
-    </radialGradient>
+    <!-- Animated smoke/wave patterns -->
+    <path id="smokePath1" d="M0,50 Q200,20 400,50 T800,50" 
+          fill="none" 
+          stroke="rgba(255,255,255,0.15)" 
+          stroke-width="2" 
+          opacity="0.6">
+      <animateTransform 
+        attributeName="transform" 
+        type="translate" 
+        values="0,0; 50,10; 0,0; -30,5; 0,0" 
+        dur="12s" 
+        repeatCount="indefinite"/>
+      <animate 
+        attributeName="opacity" 
+        values="0.3;0.7;0.3;0.5;0.3" 
+        dur="12s" 
+        repeatCount="indefinite"/>
+    </path>
 
-    <!-- Blur filter for glassmorphism effect -->
+    <path id="smokePath2" d="M0,150 Q300,120 600,150 T800,150" 
+          fill="none" 
+          stroke="rgba(255,255,255,0.12)" 
+          stroke-width="1.5" 
+          opacity="0.4">
+      <animateTransform 
+        attributeName="transform" 
+        type="translate" 
+        values="0,0; -40,15; 0,0; 60,-8; 0,0" 
+        dur="15s" 
+        repeatCount="indefinite"/>
+      <animate 
+        attributeName="opacity" 
+        values="0.2;0.6;0.2;0.4;0.2" 
+        dur="15s" 
+        repeatCount="indefinite"/>
+    </path>
+
+    <path id="smokePath3" d="M0,250 Q250,220 500,250 T800,250" 
+          fill="none" 
+          stroke="rgba(255,255,255,0.08)" 
+          stroke-width="1" 
+          opacity="0.5">
+      <animateTransform 
+        attributeName="transform" 
+        type="translate" 
+        values="0,0; 30,-12; 0,0; -50,18; 0,0" 
+        dur="18s" 
+        repeatCount="indefinite"/>
+      <animate 
+        attributeName="opacity" 
+        values="0.1;0.5;0.1;0.3;0.1" 
+        dur="18s" 
+        repeatCount="indefinite"/>
+    </path>
+
+    <!-- Wave patterns -->
+    <path id="wave1" d="M0,300 Q200,280 400,300 T800,300" 
+          fill="none" 
+          stroke="rgba(255,255,255,0.1)" 
+          stroke-width="1.5" 
+          opacity="0.4">
+      <animateTransform 
+        attributeName="transform" 
+        type="translate" 
+        values="0,0; 70,5; 0,0; -40,10; 0,0" 
+        dur="20s" 
+        repeatCount="indefinite"/>
+    </path>
+
+    <!-- Floating particles -->
+    <circle id="particle1" cx="100" cy="100" r="1.5" 
+            fill="rgba(255,255,255,0.3)" 
+            opacity="0.6">
+      <animateTransform 
+        attributeName="transform" 
+        type="translate" 
+        values="0,0; 200,50; 400,-30; 600,40; 800,0" 
+        dur="25s" 
+        repeatCount="indefinite"/>
+      <animate 
+        attributeName="opacity" 
+        values="0.2;0.8;0.2;0.6;0.2" 
+        dur="25s" 
+        repeatCount="indefinite"/>
+    </circle>
+
+    <circle id="particle2" cx="300" cy="200" r="1" 
+            fill="rgba(255,255,255,0.25)" 
+            opacity="0.4">
+      <animateTransform 
+        attributeName="transform" 
+        type="translate" 
+        values="0,0; -150,80; -300,-40; -450,60; -600,0" 
+        dur="30s" 
+        repeatCount="indefinite"/>
+      <animate 
+        attributeName="opacity" 
+        values="0.1;0.6;0.1;0.4;0.1" 
+        dur="30s" 
+        repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Blur filter for subtle effects -->
     <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
-    </filter>
-
-    <!-- Backdrop blur simulation -->
-    <filter id="backdropBlur" x="0%" y="0%" width="100%" height="100%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
-      <feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.15 0"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
     </filter>
   </defs>
   
-  <!-- Multi-layered glassmorphism background -->
+  <!-- Subtle glassmorphism background -->
+  <rect x="0" y="0" width="800" height="400" rx="20" ry="20" 
+        fill="rgba(255,255,255,0.08)" 
+        stroke="rgba(255,255,255,0.2)" 
+        stroke-width="1"/>
   
-  <!-- Base layer with subtle gradient -->
-  <rect x="0" y="0" width="800" height="400" rx="24" ry="24" 
-        fill="rgba(248,250,255,0.08)" 
-        stroke="none"/>
+  <!-- Animated smoke/wave layers behind the glass -->
+  <g opacity="0.7" filter="url(#blur)">
+    <use href="#smokePath1"/>
+    <use href="#smokePath2"/>
+    <use href="#smokePath3"/>
+    <use href="#wave1"/>
+    <use href="#particle1"/>
+    <use href="#particle2"/>
+  </g>
   
-  <!-- Primary glass layer -->
-  <rect x="0" y="0" width="800" height="400" rx="24" ry="24" 
-        fill="url(#glassGrad1)" 
-        stroke="rgba(255,255,255,0.18)" 
-        stroke-width="1.5"/>
+  <!-- Main glass layer -->
+  <rect x="0" y="0" width="800" height="400" rx="20" ry="20" 
+        fill="url(#glassGrad)" 
+        stroke="rgba(255,255,255,0.25)" 
+        stroke-width="1"/>
   
-  <!-- Secondary glass layer with radial gradient -->
-  <rect x="0" y="0" width="800" height="400" rx="24" ry="24" 
-        fill="url(#glassRadial)" 
-        stroke="none"
-        filter="url(#blur)"/>
-  
-  <!-- Subtle inner glow -->
-  <rect x="2" y="2" width="796" height="396" rx="22" ry="22" 
+  <!-- Inner glow -->
+  <rect x="1" y="1" width="798" height="398" rx="19" ry="19" 
         fill="none" 
-        stroke="rgba(255,255,255,0.4)" 
+        stroke="rgba(255,255,255,0.3)" 
         stroke-width="0.5"/>
   
-  <!-- Floating glass elements for depth -->
-  <ellipse cx="150" cy="80" rx="40" ry="25" 
-           fill="rgba(255,255,255,0.12)" 
-           stroke="rgba(255,255,255,0.2)" 
-           stroke-width="0.5"
-           filter="url(#blur)">
-    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="4s" repeatCount="indefinite"/>
-  </ellipse>
-  
-  <ellipse cx="650" cy="320" rx="35" ry="20" 
-           fill="rgba(255,255,255,0.08)" 
+  <!-- Floating glass elements with movement -->
+  <ellipse cx="120" cy="80" rx="30" ry="18" 
+           fill="rgba(255,255,255,0.1)" 
            stroke="rgba(255,255,255,0.15)" 
            stroke-width="0.5"
            filter="url(#blur)">
-    <animate attributeName="opacity" values="0.2;0.5;0.2" dur="5s" repeatCount="indefinite"/>
+    <animateTransform 
+      attributeName="transform" 
+      type="translate" 
+      values="0,0; 20,10; 0,0; -15,5; 0,0" 
+      dur="8s" 
+      repeatCount="indefinite"/>
+    <animate 
+      attributeName="opacity" 
+      values="0.3;0.6;0.3" 
+      dur="8s" 
+      repeatCount="indefinite"/>
   </ellipse>
   
-  <!-- Centered and scaled tile container -->
+  <ellipse cx="650" cy="300" rx="25" ry="15" 
+           fill="rgba(255,255,255,0.08)" 
+           stroke="rgba(255,255,255,0.12)" 
+           stroke-width="0.5"
+           filter="url(#blur)">
+    <animateTransform 
+      attributeName="transform" 
+      type="translate" 
+      values="0,0; -25,15; 0,0; 30,-8; 0,0" 
+      dur="10s" 
+      repeatCount="indefinite"/>
+    <animate 
+      attributeName="opacity" 
+      values="0.2;0.5;0.2" 
+      dur="10s" 
+      repeatCount="indefinite"/>
+  </ellipse>
+  
+  <!-- Centered tile container -->
   <g transform="translate(50, 100)">
-    <!-- Top-left tile -->
+    <!-- Animated tiles -->
     <rect x="0" y="0" width="100" height="100" fill="url(#animGrad1)" rx="8" ry="8" 
-          stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-    
-    <!-- Top-right tile -->
+          stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
     <rect x="100" y="0" width="100" height="100" fill="url(#animGrad2)" rx="8" ry="8"
-          stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-    
-    <!-- Bottom-left tile -->
+          stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
     <rect x="0" y="100" width="100" height="100" fill="url(#animGrad3)" rx="8" ry="8"
-          stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-    
-    <!-- Bottom-right tile -->
+          stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
     <rect x="100" y="100" width="100" height="100" fill="url(#animGrad4)" rx="8" ry="8"
-          stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+          stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
     
-    <!-- Glass overlay on tiles for integration -->
+    <!-- Subtle glass overlay on tiles -->
     <rect x="0" y="0" width="200" height="200" rx="8" ry="8"
-          fill="rgba(255,255,255,0.08)" 
-          stroke="rgba(255,255,255,0.15)" 
+          fill="rgba(255,255,255,0.06)" 
+          stroke="rgba(255,255,255,0.1)" 
           stroke-width="1"/>
   </g>
   
-  <!-- Text Section with glass backdrop -->
+  <!-- Text section -->
   <g transform="translate(300, 0)">
-    <!-- Text backdrop -->
-    <rect x="-20" y="120" width="480" height="140" rx="16" ry="16"
-          fill="rgba(255,255,255,0.06)" 
-          stroke="rgba(255,255,255,0.12)" 
+    <!-- Subtle text backdrop -->
+    <rect x="-20" y="120" width="480" height="140" rx="12" ry="12"
+          fill="rgba(255,255,255,0.05)" 
+          stroke="rgba(255,255,255,0.1)" 
           stroke-width="1"
           filter="url(#blur)"/>
     
-    <!-- Project text (H3/H4 size) -->
+    <!-- Project text -->
     <text x="0" y="142" font-family="Arial, sans-serif" font-size="24" font-weight="400" 
-          fill="#444" opacity="0.9"
-          filter="drop-shadow(0 1px 2px rgba(255,255,255,0.5))">
+          fill="#444" opacity="0.8">
       Project
     </text>
     
-    <!-- Hands-Free text (H1 size) -->
+    <!-- Hands-Free text -->
     <text x="0" y="190" font-family="Arial, sans-serif" font-size="48" font-weight="bold" 
-          fill="#2c3e50"
-          filter="drop-shadow(0 2px 4px rgba(255,255,255,0.3))">
+          fill="#2c3e50">
       Hands-Free
       <animate attributeName="fill" values="#2c3e50;#e74c3c;#3498db;#2ecc71;#2c3e50" dur="8s" repeatCount="indefinite"/>
     </text>
     
-    <!-- Gaming text (H1 size) -->
+    <!-- Gaming text -->
     <text x="0" y="240" font-family="Arial, sans-serif" font-size="48" font-weight="bold" 
-          fill="#34495e"
-          filter="drop-shadow(0 2px 4px rgba(255,255,255,0.3))">
+          fill="#34495e">
       Gaming
       <animate attributeName="fill" values="#34495e;#9b59b6;#f39c12;#1abc9c;#34495e" dur="8s" repeatCount="indefinite"/>
     </text>
   </g>
-  
-  <!-- Final glass overlay for unified effect -->
-  <rect x="0" y="0" width="800" height="400" rx="24" ry="24" 
-        fill="rgba(255,255,255,0.03)" 
-        stroke="rgba(255,255,255,0.25)" 
-        stroke-width="1"/>
 </svg>
